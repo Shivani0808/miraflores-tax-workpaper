@@ -1,0 +1,1462 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Miraflores | Evidence Workpaper</title>
+    <style>
+      :root {
+        font-family: Inter, ui-sans-serif, system-ui, Arial;
+        color: #182533;
+        background: #f4f6f9;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: 235px 1fr;
+        min-height: 100vh;
+      }
+
+      .side {
+        background: #11263b;
+        color: #deecf9;
+        padding: 25px 15px;
+      }
+
+      .brand {
+        font-size: 20px;
+        font-weight: 750;
+        padding: 5px 10px 20px;
+      }
+
+      .brand span {
+        color: #83d4bf;
+      }
+
+      .sub {
+        font-size: 10px;
+        color: #9eb6c8;
+        letter-spacing: 2px;
+      }
+
+      .nav {
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: 0;
+        background: none;
+        color: #bcd0e3;
+        padding: 13px;
+        border-radius: 9px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .nav.active,
+      .nav:hover {
+        background: #24445b;
+        color: white;
+      }
+
+      .main {
+        padding: 24px 32px;
+        min-width: 0;
+        max-width: 1660px;
+        width: 100%;
+      }
+
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 26px;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 1.6px;
+        color: #718094;
+      }
+
+      h1 {
+        margin: 5px 0;
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 17px;
+        margin: 0 0 15px;
+      }
+
+      h3 {
+        font-size: 14px;
+        margin: 0 0 10px;
+      }
+
+      .muted {
+        color: #64758a;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .right {
+        margin-left: auto;
+      }
+
+      select,
+      input,
+      textarea {
+        font: inherit;
+        border: 1px solid #d1dbe4;
+        border-radius: 8px;
+        padding: 9px 11px;
+        background: white;
+        color: #182533;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 70px;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .btn {
+        border: 0;
+        background: #1b6f83;
+        color: #fff;
+        border-radius: 8px;
+        padding: 10px 14px;
+      }
+
+      .btn.secondary {
+        background: #e6edf3;
+        color: #223e54;
+      }
+
+      .btn.danger {
+        background: #fbe8e6;
+        color: #9b332a;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
+
+      .panel,
+      .stat {
+        background: white;
+        border: 1px solid #dfe5ed;
+        border-radius: 12px;
+        padding: 19px;
+        margin-bottom: 17px;
+      }
+
+      .stat strong {
+        font-size: 25px;
+        display: block;
+        margin: 8px 0;
+      }
+
+      .stat span {
+        font-size: 12px;
+        color: #617387;
+      }
+
+      .cols {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 17px;
+      }
+
+      .triple {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+      }
+
+      .tablewrap {
+        overflow: auto;
+        max-height: 65vh;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+
+      th {
+        color: #68798b;
+        text-align: left;
+        background: #f7f9fb;
+        position: sticky;
+        top: 0;
+      }
+
+      td,
+      th {
+        padding: 11px 9px;
+        border-bottom: 1px solid #edf0f3;
+        vertical-align: top;
+      }
+
+      tr.clickable:hover {
+        background: #eff8fa;
+        cursor: pointer;
+      }
+
+      .tag {
+        padding: 3px 8px;
+        font-size: 11px;
+        border-radius: 20px;
+        background: #eaf2f7;
+        color: #2d6072;
+      }
+
+      .critical {
+        background: #fbe5e3;
+        color: #9e2b29;
+      }
+
+      .high {
+        background: #fff0d8;
+        color: #8e5610;
+      }
+
+      .medium {
+        background: #e8edf8;
+        color: #476189;
+      }
+
+      .good {
+        background: #e1f4ea;
+        color: #20744f;
+      }
+
+      .small {
+        font-size: 12px;
+      }
+
+      .document {
+        background: #fcfcfa;
+        border: 1px solid #d3d8d8;
+        padding: 18px;
+        border-radius: 8px;
+        white-space: pre-wrap;
+        line-height: 1.8;
+        font-family: Georgia, serif;
+        font-size: 14px;
+        max-height: 410px;
+        overflow: auto;
+      }
+
+      .selected {
+        outline: 2px solid #2f8fa7;
+        background: #edfbff;
+        padding: 4px;
+        border-radius: 5px;
+      }
+
+      .doclink {
+        color: #136c84;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      .details {
+        padding: 12px;
+        background: #f3f7fa;
+        border-radius: 8px;
+        overflow-wrap: anywhere;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      code {
+        font-size: 12px;
+      }
+
+      #notice {
+        position: fixed;
+        bottom: 17px;
+        right: 18px;
+        background: #172f42;
+        color: white;
+        padding: 12px 17px;
+        border-radius: 9px;
+        display: none;
+        z-index: 5;
+      }
+
+      .mini {
+        font-size: 11px;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      @media (max-width: 900px) {
+        .shell {
+          grid-template-columns: 1fr;
+        }
+
+        .side {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 10px;
+        }
+
+        .brand {
+          width: 100%;
+        }
+
+        .nav {
+          width: auto;
+        }
+
+        .main {
+          padding: 14px;
+        }
+
+        .stats,
+        .cols,
+        .triple,
+        .split {
+          grid-template-columns: 1fr;
+        }
+
+        .top {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="shell">
+      <aside class="side">
+        <div class="brand">
+          Miraflores <span>◇</span>
+          <div class="sub">EVIDENCE WORKPAPER</div>
+        </div>
+        <div id="nav"></div>
+        <p class="mini" style="padding: 15px; color: #9ab7c7">
+          2025 • Okafor–Lindqvist<br />Local prototype • review state persists
+          in this browser
+        </p>
+      </aside>
+      <main class="main">
+        <header class="top">
+          <div>
+            <div class="eyebrow">
+              Client CL-20417 · TY2025 · Joint federal + California
+            </div>
+            <h1 id="heading">Review overview</h1>
+            <span class="muted">Source-linked controls, not a spreadsheet</span>
+          </div>
+          <div class="row">
+            <label class="small"
+              >Role
+              <select id="role"></select></label
+            ><button class="btn secondary" id="export">
+              Export review JSON
+            </button>
+          </div>
+        </header>
+        <div id="app"></div>
+      </main>
+    </div>
+    <div id="notice"></div>
+    <script src="packet.js"></script>
+    <script src="issues.js"></script>
+    <script>
+      const P = window.PACKET,
+        seed = window.SEED_ISSUES,
+        V = P.return_versions,
+        docs = P.documents,
+        ev = P.extracted_values;
+      let view = "overview",
+        currentVersion = "v3",
+        selectedLine = "F1040.1a",
+        selectedDoc = "D31",
+        selectedPage = 1,
+        filter = "",
+        selectedIssue = seed[0].id;
+      const names = {
+        overview: "Review overview",
+        trace: "Lineage explorer",
+        documents: "Evidence library",
+        issues: "Exceptions & decisions",
+        versions: "Return versions",
+        whatif: "Scenario lab",
+        workflow: "People & filing",
+        audit: "Audit trail",
+        checks: "Independent checks",
+        corrections: "Corrections & undo",
+        taxworkpapers: "Tax-area workpapers",
+        filing: "Filing lifecycle",
+        completeness: "Completion dashboard",
+      };
+      const key = "miraflores-workpaper-v1";
+      let state;
+      try {
+        state = JSON.parse(localStorage.getItem(key)) || {};
+      } catch {
+        state = {};
+      }
+      state.issues ??= {};
+      state.verified ??= {};
+      state.signoffs ??= {};
+      state.actions ??= [];
+      state.notes ??= {};
+      state.lastSeen ??= "v1";
+      const E = (s) =>
+        String(s ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const money = (n) =>
+        typeof n === "number"
+          ? new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+              maximumFractionDigits: 0,
+            }).format(n)
+          : String(n ?? "—");
+      const date = (s) => (s ? String(s).slice(0, 10) : "—");
+      const byid = (list, id) => list.find((x) => x.id === id);
+      const version = () => V.find((x) => x.version === currentVersion);
+      const role = () => document.querySelector("#role").value;
+      function persist() {
+        localStorage.setItem(key, JSON.stringify(state));
+      }
+      function log(action, ref) {
+        state.actions.unshift({
+          at: new Date().toISOString(),
+          role: role(),
+          action,
+          ref,
+        });
+        persist();
+        toast(action);
+      }
+      function toast(t) {
+        const el = document.querySelector("#notice");
+        el.textContent = t;
+        el.style.display = "block";
+        setTimeout(() => (el.style.display = "none"), 2400);
+      }
+      const badge = (t, cls = "") => `<span class="tag ${cls}">${E(t)}</span>`;
+      function go(which) {
+        view = which;
+        document.querySelector("#heading").textContent = names[which];
+        document.querySelector("#nav").innerHTML = Object.entries(names)
+          .map(
+            ([k, n]) =>
+              `<button class="nav ${k === view ? "active" : ""}" onclick="go('${k}')">${n}</button>`,
+          )
+          .join("");
+        render();
+        if (which === "checks") loadReconciliations();
+        if (which === "corrections") loadCorrections();
+        if (which === "filing") {loadFilingWorkflow();loadSnapshotAmendments();}
+        if (which === "completeness") loadCompleteness();
+      }
+      function lineSelect(k) {
+        selectedLine = k;
+        go("trace");
+      }
+      async function loadDocumentFromBackend(id) {
+  try {
+    const response = await fetch(
+      `/api/documents/${encodeURIComponent(id)}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`API returned ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    console.log("Evidence Library API:", data.document.id);
+
+    return data;
+  } catch (error) {
+    console.error("Unable to load document:", error);
+    return null;
+  }
+}
+async function docSelect(id, p = 1) {
+  selectedDoc = id;
+  selectedPage = p;
+
+  const data = await loadDocumentFromBackend(id);
+
+  if (data) {// Replace this document's embedded extracted values
+// with the values returned by FastAPI.
+for (let i = ev.length - 1; i >= 0; i--) {
+  if (ev[i].document_id === id) {
+    ev.splice(i, 1);
+  }
+}
+
+ev.push(...data.extracted_values);
+    const index = docs.findIndex((d) => d.id === id);
+
+    if (index !== -1) {
+      docs[index] = data.document;
+    }
+
+    console.log(
+      "Document retrieved from FastAPI:",
+      data.document.id,
+      data.extracted_values.length,
+      "extracted values"
+    );
+  }
+
+  go("documents");
+}
+
+      function issueSelect(id) {
+        selectedIssue = id;
+        go("issues");
+      }
+      function canReview() {
+        return ["reviewer", "partner", "admin"].includes(role());
+      }
+      function status(i) {
+        return state.issues[i.id]?.status || "open";
+      }
+      function summary() {
+        const s = version().summary;
+        return `<div class="stats"><div class="stat"><span>Documents indexed</span><strong>${docs.length}</strong><span>${ev.length.toLocaleString()} extracted values</span></div><div class="stat"><span>Source-linked return lines</span><strong>${version().lines.length}</strong><span>${currentVersion} current view</span></div><div class="stat"><span>Open exceptions</span><strong>${seed.filter((i) => status(i) !== "resolved").length}</strong><span>Independent checks</span></div><div class="stat"><span>Return versions</span><strong>${V.length}</strong><span>Latest ${date(V.at(-1).computed_at)}</span></div></div><div class="cols"><div class="panel"><h2>Exceptions requiring judgment</h2>${seed
+          .slice(0, 8)
+          .map(
+            (i) =>
+              `<div class="row" style="padding:10px 0;border-bottom:1px solid #edf0f3">${badge(i.severity, i.severity)}<a class="doclink" onclick="issueSelect('${i.id}')">${E(i.title)}</a><span class="right">${badge(status(i))}</span></div>`,
+          )
+          .join(
+            "",
+          )}<button class="btn secondary" style="margin-top:13px" onclick="go('issues')">See all ${seed.length} controls →</button></div><div><div class="panel"><h2>Computation snapshot</h2>${[
+          "federal",
+          "california",
+        ]
+          .map(
+            (j) =>
+              `<h3>${j[0].toUpperCase() + j.slice(1)}</h3>${Object.entries(
+                s[j] || {},
+              )
+                .slice(0, 8)
+                .map(
+                  ([k, v]) =>
+                    `<div class="row" style="padding:6px 0"><span class="small muted">${E(k.replaceAll("_", " "))}</span><b class="right">${money(v)}</b></div>`,
+                )
+                .join("")}`,
+          )
+          .join(
+            "",
+          )}</div><div class="panel"><h2>Review readiness</h2><p class="muted small">Sign-offs are blocked while critical issues remain open. The reviewer can record judgments and close verified exceptions.</p>${badge(seed.filter((x) => x.severity === "critical" && status(x) !== "resolved").length + " critical issues outstanding", "critical")}</div></div></div>`;
+      }
+      function trace() {
+        const lines = version().lines;
+        let line = lines.find((x) => x.key === selectedLine) || lines[0];
+        const sourceIds = (line.sources || []).filter((x) =>
+          x.startsWith("ev-"),
+        );
+        const linked = sourceIds.map((x) => byid(ev, x)).filter(Boolean);
+        return `<div class="row"><label>Version <select onchange="currentVersion=this.value;render()">${V.map((x) => `<option ${x.version === currentVersion ? "selected" : ""}>${x.version}</option>`).join("")}</select></label><input placeholder="Search form, line, label, amount" value="${E(filter)}" oninput="filter=this.value;render()" style="flex:1"></div><div class="cols" style="margin-top:15px;grid-template-columns:1fr 1.25fr"><div class="panel"><h2>Computed lines</h2><div class="tablewrap"><table><tr><th>Return line</th><th>Value</th></tr>${lines
+          .filter((x) =>
+            `${x.key} ${x.label} ${x.value}`
+              .toLowerCase()
+              .includes(filter.toLowerCase()),
+          )
+          .slice(0, 250)
+          .map(
+            (x) =>
+              `<tr class="clickable" onclick="selectedLine='${E(x.key)}';render()" style="${x.key === line.key ? "background:#eaf7f9" : ""}"><td>${E(x.key)}<div class="mini muted">${E(x.label)}</div></td><td>${money(x.value)}</td></tr>`,
+          )
+          .join(
+            "",
+          )}</table></div></div><div><div class="panel"><h2>${E(line.key)} · ${E(line.label)}</h2><div class="row"><strong style="font-size:26px">${money(line.value)}</strong>${badge(line.jurisdiction)}</div><p class="small muted">Rule: ${E(line.rule)} · Version: ${currentVersion}</p><p>${E(line.note || "No computation note provided.")}</p><h3>Dependency graph</h3><div class="details">${(line.inputs || []).length ? line.inputs.map((x) => `<a class="doclink" onclick="lineSelect('${E(x)}')">${E(x)}</a>`).join(" → ") : "No upstream line keys recorded"}<div style="margin-top:10px"><b>Verification</b> ${badge(state.verified[line.key] ? "verified" : "unverified", state.verified[line.key] ? "good" : "high")}</div></div><div style="margin-top:12px"><button class="btn" onclick="verifyLine('${E(line.key)}')">Record independent check</button></div></div><div class="panel"><h2>Source evidence (${linked.length})</h2>${linked.length ? linked.map((x) => `<div class="details" style="margin-bottom:9px"><div class="row"><b>${E(x.id)}</b>${badge(Math.round(x.confidence * 100) + "% confidence")}<span class="right doclink" onclick="docSelect('${x.document_id}',${x.page})">Open ${x.document_id} p.${x.page} ↗</span></div><div>${E(x.label)} · ${E(x.field)}</div><b>${E(x.text_as_read || x.value)}</b></div>`).join("") : "No direct extracted-value identifiers. Inspect dependency lines and other source references."}<p class="mini muted">Source links use recorded extraction IDs; no imputed fields.</p></div></div></div>`;
+      }
+     
+async function verifyLine(k) {
+  const note = prompt(
+    "Evidence checked, independent method, and reviewer conclusion:"
+  );
+
+  if (!note || !note.trim()) return;
+
+  try {
+    const response = await fetch("/api/review-decisions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        reference_id: k,
+        decision_type: "independent_verification",
+        status: "verified",
+        note: note.trim(),
+        role: role()
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Save failed: ${response.status}`);
+    }
+
+    const saved = await response.json();
+
+    state.verified[k] = {
+      note: note.trim(),
+      by: role(),
+      at: new Date().toISOString(),
+      version: currentVersion,
+      database_id: saved.id
+    };
+
+    // Keep the existing browser journal in sync.
+    log("Verified return line", k);
+    render();
+
+    console.log("Verification saved to SQLite:", saved);
+  } catch (error) {
+    console.error("Verification save failed:", error);
+    alert("Unable to save verification. Please check your backend.");
+  }
+}
+
+      function documents() {
+        let d = byid(docs, selectedDoc) || docs[0],
+          page = d.pages.find((x) => x.page === selectedPage) || d.pages[0],
+          values = ev.filter(
+            (x) => x.document_id === d.id && x.page === page.page,
+          ),
+          used = version().lines.filter((x) =>
+            (x.sources || []).some((id) => values.some((e) => e.id === id)),
+          );
+        return `<div class="row"><input placeholder="Search document title, type or ID" value="${E(filter)}" oninput="filter=this.value;render()" style="flex:1"><span class="small muted">${docs.length} records • Source preview simulated from printed_content</span></div><div class="cols" style="grid-template-columns:.8fr 1.5fr;margin-top:15px"><div class="panel"><h2>Document index</h2><div class="tablewrap">${docs
+          .filter((x) =>
+            `${x.id} ${x.title} ${x.document_type}`
+              .toLowerCase()
+              .includes(filter.toLowerCase()),
+          )
+          .map(
+            (x) =>
+              `<div onclick="docSelect('${x.id}')" class="clickable" style="cursor:pointer;padding:10px;border-bottom:1px solid #edf0f3;${x.id === d.id ? "background:#e9f5f7" : ""}"><b>${x.id}</b> ${E(x.title)}<div class="mini muted">${E(x.document_type)} · ${x.page_count} page(s) · ${E(x.extraction.status)}</div></div>`,
+          )
+          .join(
+            "",
+          )}</div></div><div><div class="panel"><h2>${d.id}: ${E(d.title)}</h2><p class="small muted">${E(d.issuer)} · Received ${date(d.received_at)} · ${badge(d.extraction.status, d.extraction.status === "partial" ? "high" : "")}</p><div class="row" style="margin-bottom:12px">${d.pages.map((x) => `<button class="btn ${page.page === x.page ? "" : "secondary"}" onclick="selectedPage=${x.page};render()">p.${x.page}</button>`).join("")}</div><div class="document">${E(page.printed_content)}</div><h3 style="margin-top:18px">Extracted fields on this page</h3><div class="tablewrap" style="max-height:280px"><table><tr><th>Field</th><th>Extraction</th><th>Confidence</th></tr>${values
+          .slice(0, 80)
+          .map(
+            (x) =>
+              `<tr><td>${E(x.label || x.field)}<div class="mini">${E(x.id)}</div></td><td>${E(x.text_as_read || x.value)}</td><td>${Math.round(x.confidence * 100)}%</td></tr>`,
+          )
+          .join(
+            "",
+          )}</table></div><h3 style="margin-top:15px">Where these fields landed</h3>${
+          used.length
+            ? used
+                .slice(0, 30)
+                .map(
+                  (x) =>
+                    `<div class="row" style="padding:6px 0"><a class="doclink" onclick="lineSelect('${E(x.key)}')">${E(x.key)}</a><span class="small muted">${E(x.label)}</span><b class="right">${money(x.value)}</b></div>`,
+                )
+                .join("")
+            : "No directly traced return line from this page in this version. Verify whether omitted, replaced, or used via other records."
+        }</div></div></div>`;
+      }
+      function issues() {
+        let i = seed.find((x) => x.id === selectedIssue) || seed[0],
+          s = state.issues[i.id] || {};
+        return `<div class="cols" style="grid-template-columns:1fr 1.2fr"><div class="panel"><div class="row"><h2>Exception queue</h2><button class="btn secondary right" onclick="bulkTriage()">Batch assign open → reviewer</button></div>${bulkBatchHistory()}${seed.map((x) => `<div style="padding:13px 5px;cursor:pointer;border-bottom:1px solid #e9edf2;${x.id === i.id ? "background:#eff8fa" : ""}" onclick="selectedIssue='${x.id}';render()"><div class="row">${badge(x.severity, x.severity)}<b>${x.id}</b><span class="right">${badge(status(x), status(x) === "resolved" ? "good" : "")}</span></div><div>${E(x.title)}</div></div>`).join("")}</div><div class="panel"><div class="row">${badge(i.severity, i.severity)} ${badge(status(i), status(i) === "resolved" ? "good" : "")}</div><h2 style="margin-top:13px">${E(i.title)}</h2><p>${E(i.explanation)}</p><button class="btn secondary" onclick="docSelect('${i.doc}')">Inspect source ${i.doc} ↗</button><h3 style="margin-top:22px">Decision record</h3><p class="muted small">Document judgment and the evidence checked. Resolving requires reviewer/partner permission; prior history is retained in the audit trail.</p><label class="small">Assigned to <select id="owner"><option value="preparer" ${s.owner === "preparer" ? "selected" : ""}>Preparer</option><option value="reviewer" ${s.owner === "reviewer" ? "selected" : ""}>Reviewer</option><option value="partner" ${s.owner === "partner" ? "selected" : ""}>Partner</option></select></label><p><textarea id="decision" placeholder="What was inspected? What was decided? What is the impact?">${E(s.note || "")}</textarea></p><div class="row"><button class="btn" onclick="saveIssue('${i.id}',false)">Save judgment</button><button class="btn secondary" onclick="saveIssue('${i.id}',true)">Resolve after verification</button></div>${s.by ? `<p class="small muted">Last changed by ${E(s.by)} on ${date(s.at)}</p>` : ""}</div></div>`;
+      }
+      
+async function saveIssue(id, resolve) {
+  if (resolve && !canReview()) {
+    return toast("Reviewer, partner or admin permission required");
+  }
+
+  const note = document.querySelector("#decision").value.trim();
+
+  if (!note) {
+    return toast("Enter a documented justification");
+  }
+
+  const owner = document.querySelector("#owner").value;
+  const newStatus = resolve ? "resolved" : "in_review";
+
+  try {
+    const response = await fetch(
+      `/api/exceptions/${encodeURIComponent(id)}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          status: newStatus,
+          note: note,
+          assigned_role: owner,
+          role: role()
+        })
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Save failed: ${response.status}`);
+    }
+
+    const saved = await response.json();
+
+    state.issues[id] = {
+      status: saved.status,
+      note: note,
+      owner: owner,
+      by: role(),
+      at: new Date().toISOString()
+    };
+
+    state.signoffs = {};
+
+    log(
+      resolve
+        ? "Resolved exception; sign-offs reopened"
+        : "Updated exception",
+      id
+    );
+
+    render();
+
+    console.log("Exception saved to SQLite:", saved);
+    toast("Judgment saved successfully");
+  } catch (error) {
+    console.error("Exception save failed:", error);
+    toast("Unable to save judgment. Check your backend.");
+  }
+}
+
+      let bulkEvents = [];
+      function bulkBatchHistory() {
+        if (!bulkEvents.length) return `<p class="small muted">No saved bulk actions yet.</p>`;
+        return `<div style="padding:10px;background:#f1f5f9;border-radius:8px;margin-bottom:12px"><b>Saved batches</b>${bulkEvents.slice(0,5).map(x=>`<div class="small" style="margin-top:8px">Batch #${x.id}: ${x.changes.length} records — ${x.undone?'undone':'active'} ${x.undone?'':`<button class="btn secondary" style="padding:4px 7px" onclick="undoBulk(${x.id})">Undo batch</button>`}</div>`).join('')}</div>`;
+      }
+      async function loadBulkBatches() {
+        try { let r=await fetch('/api/bulk-assignments'); if(!r.ok) throw Error(r.status); bulkEvents=await r.json(); render(); }
+        catch(e) {console.error('Bulk history failed',e); toast('Unable to load batch history');}
+      }
+      async function bulkTriage() {
+        const ids = seed.filter(x=>status(x)==='open').map(x=>x.id);
+        if(!ids.length) return toast('No open exceptions to assign');
+        if(!confirm(`Assign ${ids.length} open exceptions to reviewer? Saved to SQLite.`)) return;
+        try {
+          const r=await fetch('/api/bulk-assignments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({exception_ids:ids,target_role:'reviewer',role:role(),note:'Assigned for independent review (bulk triage)'})});
+          if(!r.ok) { const d=await r.json();throw Error(typeof d.detail==='string'?d.detail:r.status); }
+          await loadSavedExceptions(); await loadBulkBatches(); await loadSavedSignoffs(); await loadAuditEvents();
+          toast(`${ids.length} assigned in SQLite`);
+        } catch(e) {toast(`Bulk assignment failed: ${e.message}`);}
+      }
+      async function undoBulk(id) {
+        const note=prompt(`Reason for undoing batch #${id}:`,'Revert test batch after verifying persistence and audit history.');
+        if(!note || note.trim().length<5) return;
+        try {
+          let r=await fetch(`/api/bulk-assignments/${id}/undo`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({role:role(),note:note.trim()})});
+          if(!r.ok) {const d=await r.json();throw Error(typeof d.detail==='string'?d.detail:r.status);}
+          // Clear stale cached assignments before rereading from DB.
+          for(const x of seed) delete state.issues[x.id];
+          await loadSavedExceptions(); await loadBulkBatches(); await loadSavedSignoffs(); await loadAuditEvents();
+          toast(`Batch #${id} reversed; audit history retained`);
+        }catch(e){toast(`Undo refused: ${e.message}`);}
+      }
+      function versions() {
+        const chosen = version(),
+          old = V[0],
+          current = chosen.lines;
+        return `<div class="row"><label>Computed version <select onchange="currentVersion=this.value;render()">${V.map((x) => `<option ${x.version === currentVersion ? "selected" : ""}>${x.version}</option>`).join("")}</select></label> ${badge(date(chosen.computed_at))}<span class="small muted">Trigger: ${E(chosen.trigger)}</span></div><div class="cols" style="margin-top:14px"><div class="panel"><h2>Changed since v1</h2><div class="tablewrap"><table><tr><th>Line</th><th>v1</th><th>${currentVersion}</th><th>Delta</th></tr>${current
+          .filter((x) => {
+            let y = old.lines.find((z) => z.key === x.key);
+            return y && JSON.stringify(y.value) !== JSON.stringify(x.value);
+          })
+          .slice(0, 120)
+          .map((x) => {
+            let y = old.lines.find((z) => z.key === x.key),
+              delta =
+                typeof x.value === "number" && typeof y.value === "number"
+                  ? x.value - y.value
+                  : null;
+            return `<tr class="clickable" onclick="lineSelect('${E(x.key)}')"><td>${E(x.key)}<div class="mini muted">${E(x.label)}</div></td><td>${money(y.value)}</td><td>${money(x.value)}</td><td>${delta === null ? "—" : money(delta)}</td></tr>`;
+          })
+          .join(
+            "",
+          )}</table></div></div><div><div class="panel"><h2>Engine diagnostics</h2>${chosen.diagnostics.map((x) => `<div class="details" style="margin-bottom:9px">${badge(x.severity, x.severity === "warning" ? "high" : "")} <b>${E(x.code)}</b><p class="small">${E(x.message)}</p></div>`).join("")}</div><div class="panel"><h2>Review integrity</h2><p class="small">Changes invalidate previous version-specific sign-offs. Review records are preserved rather than overwritten.</p><button class="btn" onclick="state.lastSeen=currentVersion;log('Marked version reviewed',currentVersion);render()">Mark ${currentVersion} reviewed</button></div></div></div>`;
+      }
+      function whatif() {
+        const alt = P.what_if.alternatives;
+        return `<div class="panel"><h2>Engine-provided alternatives</h2><p class="small muted">Only packet-supplied scenarios are shown. No invented recomputation; these alternatives are precomputed by the simplified engine.</p><div class="tablewrap"><table><tr><th>Scenario</th><th>Federal tax effect</th><th>California tax effect</th><th>Details</th></tr>${alt.map((x) => `<tr><td><b>${E(x.id)}</b><div class="small">${E(x.description)}</div></td><td>${money(x.federal?.total_tax_change)}</td><td>${money(x.california?.total_tax_change)}</td><td><button class="btn secondary" onclick="scenario('${E(x.id)}')">Inspect</button></td></tr>`).join("")}</table></div><div id="scenarioDetail"></div></div>`;
+      }
+      function scenario(id) {
+        let s = P.what_if.alternatives.find((x) => x.id === id);
+        document.querySelector("#scenarioDetail").innerHTML =
+          `<div class="details"><h3>${E(s.description)}</h3><p>${E(JSON.stringify(s.choices, null, 2))}</p><p>Federal tax effect: <b>${money(s.federal?.total_tax_change)}</b> · California tax effect: <b>${money(s.california?.total_tax_change)}</b></p><div class="small">${(
+            s.changed_lines || []
+          )
+            .slice(0, 10)
+            .map((x) => `<pre>${E(JSON.stringify(x))}</pre>`)
+            .join("")}</div></div>`;
+      }
+      function workflow() {
+        const critical = seed.some(
+            (x) => x.severity === "critical" && status(x) !== "resolved",
+          ),
+          signoffs = state.signoffs;
+        return `<div class="triple"><div class="panel"><h2>Assignments</h2>${P.firm.staff.map((x) => `<p><b>${E(x.name)}</b><div class="small muted">${E(x.role)} • ${E(x.id)}</div></p>`).join("")}</div><div class="panel"><h2>Review gates</h2><p>${badge(critical ? "Critical exceptions block filing" : "Critical exceptions cleared", critical ? "critical" : "good")}</p>${["preparer", "reviewer", "partner"].map((x) => `<div class="row" style="padding:9px 0">${E(x)} <span class="right">${badge(signoffs[x] ? "signed" : "unsigned", signoffs[x] ? "good" : "")}</span><button class="btn secondary" onclick="sign('${x}')">Sign</button></div>`).join("")}</div><div class="panel"><h2>Client & filing timeline</h2><div class="tablewrap">${P.timeline.map((x) => `<div style="padding:8px 0;border-bottom:1px solid #e7edf0"><b class="small">${date(x.at)}</b><div>${E(x.event.replaceAll("_", " "))}</div><div class="mini muted">${(x.refs || []).join(", ")}</div></div>`).join("")}</div></div></div>`;
+      }
+      
+async function sign(r) {
+  if (role() !== r && role() !== "admin") {
+    return toast("Only the matching role can sign");
+  }
+
+  try {
+    const response = await fetch("/api/signoffs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        role: r,
+        return_version: currentVersion
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      return toast(
+        typeof result.detail === "string"
+          ? result.detail
+          : "Sign-off rejected by backend"
+      );
+    }
+
+    state.signoffs[r] = {
+      at: new Date().toISOString(),
+      version: currentVersion,
+      database_id: result.id
+    };
+
+    log("Signed " + r + " checkpoint", currentVersion);
+    render();
+
+    console.log("Sign-off saved to SQLite:", result);
+    toast("Sign-off saved successfully");
+  } catch (error) {
+    console.error("Sign-off request failed:", error);
+    toast("Unable to contact the backend");
+  }
+}
+
+      
+let databaseAuditEvents = [];
+
+async function loadAuditEvents() {
+  try {
+    const response = await fetch("/api/audit-events");
+
+    if (!response.ok) {
+      throw new Error(`Audit API returned ${response.status}`);
+    }
+
+    databaseAuditEvents = await response.json();
+
+    console.log(
+      "Audit events loaded from SQLite:",
+      databaseAuditEvents.length
+    );
+
+    if (view === "audit") {
+      render();
+    }
+  } catch (error) {
+    console.error("Unable to load audit events:", error);
+  }
+}
+
+function audit() {
+  const rows = databaseAuditEvents.map((event) => {
+    const time = event.created_at
+      ? new Date(event.created_at).toLocaleString()
+      : "Unknown";
+
+    return `
+      <tr>
+        <td>${E(time)}</td>
+        <td>${E(event.role)}</td>
+        <td>${E(event.action)}</td>
+        <td>${E(event.reference_id)}</td>
+      </tr>
+    `;
+  }).join("");
+
+  return `
+    <div class="panel">
+      <h2>Database-backed audit trail</h2>
+      <p class="small muted">
+        Audit events retrieved from SQLite through FastAPI.
+        Earlier browser-only actions are not included.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Role</th>
+            <th>Action</th>
+            <th>Reference</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows || `
+            <tr>
+              <td colspan="4">No saved audit events found.</td>
+            </tr>
+          `}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+      let reconciliationData = null;
+      let reconciliationVersion = null;
+      async function loadReconciliations() {
+        try {
+          const response = await fetch(`/api/reconciliations?version=${encodeURIComponent(currentVersion)}`);
+          if (!response.ok) throw new Error(`Reconciliation API returned ${response.status}`);
+          reconciliationData = await response.json();
+          reconciliationVersion = currentVersion;
+          if (view === "checks") render();
+        } catch (error) {
+          console.error("Independent checks failed:", error);
+          reconciliationData = { error: String(error), checks: [] };
+          if (view === "checks") render();
+        }
+      }
+      function checkAmount(value, unit) {
+        if (value === null || value === undefined) return "—";
+        if (unit === "miles") return new Intl.NumberFormat("en-US", {maximumFractionDigits: 0}).format(value) + " mi";
+        return money(value);
+      }
+      function checks() {
+        if (!reconciliationData || reconciliationVersion !== currentVersion) {
+          return `<div class="panel"><h2>Independent source reconciliations</h2><p>Loading source-to-engine checks…</p><button class="btn secondary" onclick="loadReconciliations()">Refresh checks</button></div>`;
+        }
+        const results = reconciliationData.checks || [];
+        return `<div class="panel"><div class="row"><h2>Independent source reconciliations · ${E(currentVersion)}</h2><button class="btn secondary right" onclick="loadReconciliations()">Rerun checks</button></div><p class="small muted">Recomputed from the source packet, separately from return engine output. PASS only means that this particular check reconciles; it is not tax-law validation. FAIL and REVIEW require a reviewer judgment.</p>${reconciliationData.error ? `<p>${E(reconciliationData.error)}</p>` : ''}<div class="tablewrap"><table><thead><tr><th>Check / source evidence</th><th>Independent total</th><th>Compared amount</th><th>Difference</th><th>Status</th></tr></thead><tbody>${results.map(c => `<tr><td><b>${E(c.title)}</b><div class="mini muted">${E(c.description)}</div><div class="mini muted">${E(c.note)}</div>${(c.sources||[]).map(s=>`<a class="doclink" onclick="docSelect('${E(s.document_id)}',${Number(s.page)||1})">${E(s.document_id)} p.${Number(s.page)||1} · ${E(s.field)} = ${E(s.value)}</a>`).join('<div></div>')} ${c.return_line ? `<div><a class="doclink" onclick="lineSelect('${E(c.return_line)}')">${E(c.return_line)}</a></div>` : ''}</td><td>${checkAmount(c.source_total,c.unit)}</td><td>${checkAmount(c.engine_total,c.unit)}</td><td>${checkAmount(c.difference,c.unit)}</td><td>${badge(c.status, c.status==='PASS'?'good':'high')}</td></tr>`).join('')}</tbody></table></div></div>`;
+      }
+
+      // Proposed overrides never mutate the immutable packet or claim full tax recomputation.
+      let correctionsData = {active:[],history:[]};
+      async function loadCorrections() {
+        try {
+          const r = await fetch(`/api/corrections?version=${encodeURIComponent(currentVersion)}`);
+          if (!r.ok) throw new Error(`API ${r.status}`);
+          correctionsData = await r.json();
+          if (view === 'corrections') render();
+        } catch (e) { console.error(e); toast('Unable to load corrections'); }
+      }
+      function corrections() {
+        const numeric = version().lines.filter(x => typeof x.value === 'number');
+        const current = numeric.find(x => x.key === selectedLine) || numeric[0];
+        if (current && !numeric.some(x => x.key === selectedLine)) selectedLine = current.key;
+        const active = correctionsData.version === currentVersion ? correctionsData.active : [];
+        const history = correctionsData.version === currentVersion ? correctionsData.history : [];
+        return `<div class="panel"><div class="row"><h2>Proposed corrections · ${E(currentVersion)}</h2><button class="btn secondary right" onclick="loadCorrections()">Refresh</button></div>
+          <p class="small muted">Proposals are saved to SQLite as append-only events. Original packet/engine lines stay unchanged. Undo adds a reversal record and restores the displayed proposed amount; neither action reruns the tax engine. Tax estimates use only packet-supplied marginal rates.</p>
+          <label>Return line <select id="correction-line" onchange="selectedLine=this.value;render()" style="max-width:100%">${numeric.map(l=>`<option value="${E(l.key)}" ${l.key===selectedLine?'selected':''}>${E(l.key)} — ${E(l.label)} (${money(l.value)})</option>`).join('')}</select></label>
+          <div class="details" style="margin:12px 0"><b>Original engine amount:</b> ${money(current.value)} · <b>Proposed:</b> ${active.find(x=>x.line_key===selectedLine)?money(active.find(x=>x.line_key===selectedLine).revised_value):'None'}</div>
+          <div class="cols"><div><label>Proposed amount <input id="correction-value" type="number" step="0.01" value="${E(current.value)}"></label></div><div><label>Tax-impact category <select id="correction-category">${['wages','interest','schc_profit','stcg','ltcg','ordinary_income','adjustment','salt','itemized','ca_source_income'].map(k=>`<option value="${k}">${k}</option>`).join('')}</select></label></div></div>
+          <p><label>Evidence and reason <textarea id="correction-note" placeholder="Explain source document, proposed treatment, and reviewer question"></textarea></label></p>
+          <button class="btn" onclick="saveCorrection()" ${active.some(x=>x.line_key===selectedLine)?'disabled':''}>Save proposed correction</button>
+          <div id="correction-result" style="margin-top:12px"></div></div>
+          <div class="panel"><h2>Active proposals (${active.length})</h2><div class="tablewrap"><table><tr><th>Line</th><th>Original</th><th>Proposed</th><th>Why</th><th>Action</th></tr>${active.map(c=>`<tr><td>${E(c.line_key)}</td><td>${money(c.previous_value)}</td><td>${money(c.revised_value)}</td><td>${E(c.note)}</td><td><button class="btn secondary" onclick="undoCorrection(${c.id})">Undo</button></td></tr>`).join('')||'<tr><td colspan="5">No active proposals</td></tr>'}</table></div></div>
+          <div class="panel"><h2>Immutable event history (${history.length})</h2><div class="tablewrap"><table><tr><th>When</th><th>Action</th><th>Line</th><th>From → to</th><th>Role / reason</th></tr>${history.map(c=>`<tr><td>${E(c.created_at||'')}</td><td>${E(c.action)}</td><td>${E(c.line_key)}</td><td>${money(c.previous_value)} → ${money(c.revised_value)}</td><td>${E(c.role)} · ${E(c.note)}</td></tr>`).join('')||'<tr><td colspan="5">No events yet</td></tr>'}</table></div></div>`;
+      }
+      async function saveCorrection() {
+        const val = Number(document.querySelector('#correction-value').value);
+        const note = document.querySelector('#correction-note').value.trim();
+        if (!Number.isFinite(val) || !note || note.length < 5) return toast('Enter a valid amount and reason (5+ characters)');
+        try {
+          const r = await fetch('/api/corrections',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({return_version:currentVersion,line_key:selectedLine,revised_value:val,category:document.querySelector('#correction-category').value,note,role:role()})});
+          const result = await r.json();
+          if (!r.ok) throw new Error(typeof result.detail === 'string'?result.detail:JSON.stringify(result.detail));
+          state.signoffs = {}; persist();
+          await loadCorrections(); await loadSavedSignoffs(); await loadAuditEvents();
+          toast(`Proposal saved. Estimated federal tax ${money(result.estimated_federal_tax_change)}; CA ${money(result.estimated_california_tax_change)}`);
+        } catch(e) {toast(`Save failed: ${e.message}`);}
+      }
+      async function undoCorrection(id) {
+        const note = prompt('Reason for undoing the proposal (required):');
+        if (!note || note.trim().length < 5) return;
+        try {
+          const r = await fetch(`/api/corrections/${id}/undo`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({note:note.trim(),role:role()})});
+          const result = await r.json();
+          if (!r.ok) throw new Error(typeof result.detail === 'string'?result.detail:'Undo rejected');
+          state.signoffs = {}; persist();
+          await loadCorrections(); await loadSavedSignoffs(); await loadAuditEvents();
+          toast(`Proposal undone; original ${money(result.restored_value)} restored`);
+        } catch(e) {toast(`Undo failed: ${e.message}`);}
+      }
+
+      // Read-only tax area worksheets derived from the provided packet.
+      // Original return values are never silently changed. Source cross-footing
+      // is arithmetic verification, not independent validation of tax law.
+      let taxArea = 'depreciation';
+      function taxRefLink(ref) {
+        const r = String(ref || '');
+        if (r.startsWith('ev-')) {
+          const e = ev.find(x => x.id === r);
+          return e ? `<a class="doclink" onclick="docSelect('${E(e.document_id)}',${Number(e.page)||1})">${E(r)} · ${E(e.document_id)} p.${Number(e.page)||1}</a>` : E(r);
+        }
+        if (/^doc:D\d{2}#page\d+$/.test(r)) {
+          const m = /^doc:(D\d{2})#page(\d+)$/.exec(r);
+          return `<a class="doclink" onclick="docSelect('${m[1]}',${Number(m[2])})">${E(r)}</a>`;
+        }
+        return E(r);
+      }
+      function taxWorkpapers() {
+        const v=version(), prior=P.prior_years, assets=v.assets||[], cf=v.carryovers_out||{};
+        const line=(k)=>v.lines.find(l=>l.key===k);
+        const b=(n)=>typeof n==='number' ? money(n) : '—';
+        const btns=[['depreciation','Depreciation'],['basis','Basis & carryovers'],['state','Federal / CA'],['investment','Investments']].map(([k,t])=>`<button class="btn ${taxArea===k?'':'secondary'}" onclick="taxArea='${k}';render()">${t}</button>`).join(' ');
+        let content='';
+        if(taxArea==='depreciation') {
+          const federal=assets.reduce((sum,a)=>sum+Number(a.federal?.depreciation_2025||0),0);
+          const california=assets.reduce((sum,a)=>sum+Number(a.california?.depreciation_2025||0),0);
+          const mismatches=assets.filter(a=>['federal','california'].some(j=>Math.abs(Number(a[j]?.prior_accumulated||0)+Number(a[j]?.depreciation_2025||0)-Number(a[j]?.accumulated_end||0))>0.02));
+          content=`<div class="stats" style="grid-template-columns:repeat(3,1fr)"><div class="stat"><span>2025 federal asset depreciation</span><strong>${b(federal)}</strong></div><div class="stat"><span>2025 California asset depreciation</span><strong>${b(california)}</strong></div><div class="stat"><span>Accumulated roll-forward checks</span><strong>${assets.length-mismatches.length}/${assets.length}</strong></div></div>
+          <div class="panel"><h2>Per-asset depreciation roll-forward · ${E(currentVersion)}</h2><p class="small muted">Recomputed: prior accumulated depreciation + 2025 depreciation = closing accumulated depreciation. The rates, methods, and eligibility in the engine's asset schedule are not independently validated by this test.</p><div class="tablewrap"><table><tr><th>Asset / source</th><th>Cost</th><th>Federal 2025</th><th>CA 2025</th><th>Federal / CA difference</th><th>Roll-forward</th></tr>${assets.map(a=>{const d=Number(a.federal?.depreciation_2025||0)-Number(a.california?.depreciation_2025||0); const bad=mismatches.includes(a);return `<tr><td><b>${E(a.asset_id)}</b><div class="mini">${E(a.description)}</div><div class="mini muted">${(a.sources||[]).map(taxRefLink).join(', ')}</div></td><td>${b(a.cost)}</td><td>${b(a.federal?.depreciation_2025)}</td><td>${b(a.california?.depreciation_2025)}</td><td>${b(d)}</td><td>${badge(bad?'FAIL':'PASS',bad?'critical':'good')}</td></tr>`}).join('')}</table></div></div>`;
+        } else if(taxArea==='basis') {
+          const sc=prior.basis_records.scorp_lindqvist_family_woodworks||[];
+          const partner=prior.basis_records.partnership_ridgeline||[];
+          const starting=prior.carryovers_into_2025||{};
+          const caOut=(cf.california||{}).depreciation_basis_differences||{};
+          content=`<div class="panel"><h2>Basis validation · missing inputs are not invented</h2><p class="small muted">This is a tracing and completeness worksheet. A missing historical basis record cannot be made valid merely by matching an engine-generated Form 7203 value.</p><h3>S corporation — Lindqvist Family Woodworks</h3><div class="tablewrap"><table><tr><th>Year</th><th>Income</th><th>Distributions</th><th>Ending stock basis</th><th>Source / conclusion</th></tr>${sc.map(x=>`<tr><td>${E(x.year)}</td><td>${b(x.k1_income)}</td><td>${b(x.distributions)}</td><td>${x.ending_stock_basis==null?badge('UNVERIFIED','high'):b(x.ending_stock_basis)}</td><td>${E(x.source||'')}</td></tr>`).join('')}</table></div><p>${badge('REVIEW','high')} Prior-year ending basis is incomplete. Validate source documents and distribution limitation before accepting the current Form 7203 result.</p><h3>Ridgeline outside basis</h3><p>${partner.map(x=>`Year ${E(x.year)} · Capital account ${b(x.ending_capital_account)} · Outside basis ${x.outside_basis==null?'not documented':b(x.outside_basis)}`).join('; ')}</p></div>
+          <div class="panel"><h2>Carryovers into 2025 vs engine carryovers out</h2><div class="tablewrap"><table><tr><th>Item</th><th>2024 into 2025</th><th>${E(currentVersion)} federal out</th></tr>${['capital_loss_short','capital_loss_long','passive_1450_fremont','passive_1200_barton_hills','charitable'].map(k=>`<tr><td>${E(k.replaceAll('_',' '))}</td><td>${b(starting[k])}</td><td>${b(cf.federal?.[k])}</td></tr>`).join('')}</table></div><p class="small muted">A changed balance is not automatically a discrepancy: deductions, limitations, and dispositions must be reviewed using the traced return and source schedule.</p><h3>California remaining depreciation basis differences</h3><p>${Object.entries(caOut).map(([k,n])=>`${E(k)}: <b>${b(n)}</b>`).join(' · ')}</p></div>`;
+        } else if(taxArea==='state') {
+          const caKeys=['SchCA540NR.12.A','SchCA540NR.12.C','SchCA540NR.12.D','SchCA540NR.12.E'];
+          const [fed,adds,ca,source]=caKeys.map(k=>line(k)?.value);
+          const calc=Number(fed)+Number(adds);
+          content=`<div class="panel"><h2>California Schedule C bridge</h2><p class="small muted">The packet's Schedule CA lines show a federal-to-California adjustment and a California-source portion. Arithmetic checks do not verify the underlying state tax treatment or residency allocation.</p><table><tr><th>Line</th><th>Engine value</th><th>Trace</th></tr>${caKeys.map(k=>`<tr><td>${E(k)}</td><td>${b(line(k)?.value)}</td><td><a class="doclink" onclick="lineSelect('${k}')">Open lineage</a></td></tr>`).join('')}<tr><td><b>Federal + additions</b></td><td><b>${b(calc)}</b></td><td>${badge(Math.abs(calc-Number(ca))<0.01?'PASS':'FAIL',Math.abs(calc-Number(ca))<0.01?'good':'critical')}</td></tr></table><p>${badge('REVIEW','high')} Confirm basis of ${b(adds)} adjustment and ${b(source)} California-source share against the residency/payroll evidence (D09 and D73), and asset depreciation evidence (D22).</p></div>`;
+        } else {
+          const d30=docs.find(x=>x.id==='D30'),d31=docs.find(x=>x.id==='D31'),d35=docs.find(x=>x.id==='D35');
+          content=`<div class="panel"><h2>Investment and capital-asset review</h2><p class="small muted">The supplied returns contain investment lots and trading activity. This view lists areas that require independent reconstruction rather than treating engine output as verified.</p><table><tr><th>Control</th><th>Evidence</th><th>Review condition</th></tr><tr><td>Corrected Meridian 1099-B supersession</td><td><a class="doclink" onclick="docSelect('D30')">D30</a> / <a class="doclink" onclick="docSelect('D31')">D31</a></td><td>${badge('REVIEW','high')} D31 supersedes D30; confirm lot M6 wash sale and M9 cost basis changes</td></tr><tr><td>Unextracted final page</td><td><a class="doclink" onclick="docSelect('D31',32)">D31 p.32</a></td><td>${badge('FAIL','critical')} M18 ($250 proceeds / $310 basis) omitted from extraction</td></tr><tr><td>Crypto transaction without cost basis</td><td><a class="doclink" onclick="docSelect('D35')">D35</a></td><td>${badge('REVIEW','high')} C6 transferred-in Bitcoin has unknown basis; do not assume zero</td></tr><tr><td>Direct indexing portfolio</td><td><a class="doclink" onclick="docSelect('D74')">D74</a></td><td>${badge('REVIEW','high')} 260 lots; confirm lot sums and wash-sale adjustments at cent precision</td></tr><tr><td>RSU / ESPP basis adjustments</td><td><a class="doclink" onclick="docSelect('D11')">D11</a> / <a class="doclink" onclick="docSelect('D28')">D28</a></td><td>${badge('REVIEW','high')} Compare supplemental basis with brokerage-reported basis</td></tr></table></div>`;
+        }
+        return `<div class="panel"><h2>Tax-area workpapers · ${E(currentVersion)}</h2><p class="small muted">Version-specific supporting schedules, independent arithmetic where reproducible, and explicit unresolved review questions. Source evidence and engine lines stay unchanged.</p><div class="row" style="flex-wrap:wrap">${btns}</div></div>${content}`;
+      }
+
+
+      let filingData=null;
+      async function loadFilingWorkflow(){
+        try{const r=await fetch(`/api/filing-workflow?version=${encodeURIComponent(currentVersion)}`);
+          if(!r.ok)throw Error(`HTTP ${r.status}`);
+          filingData=await r.json(); if(view==='filing')render();
+        }catch(e){console.error(e);toast('Could not load filing workflow');}
+      }
+      async function recordFilingAction(){
+        const action=document.querySelector('#filing-action').value;
+        const reference_id=document.querySelector('#filing-ref').value.trim();
+        const note=document.querySelector('#filing-note').value.trim();
+        if(!reference_id||note.length<8)return toast('Add reference and a reason (8+ characters)');
+        try {const r=await fetch('/api/filing-workflow',{method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({return_version:currentVersion,action,reference_id,note,role:role()})});
+          const result=await r.json();
+          if(!r.ok) return toast(typeof result.detail==='string'?result.detail:'Action rejected');
+          toast('Recorded in SQLite; no tax return submitted');await loadFilingWorkflow();
+        }catch(e){console.error(e);toast('Could not save workflow record');}
+      }
+
+      let snapshotList=[],amendmentList=[];
+      async function loadSnapshotAmendments(){
+        try{
+          const [a,b]=await Promise.all([
+            fetch('/api/return-snapshots?version='+encodeURIComponent(currentVersion)),
+            fetch('/api/amendment-drafts')]);
+          if(!a.ok||!b.ok)throw Error('Snapshot API unavailable');
+          snapshotList=await a.json();amendmentList=await b.json();
+          if(view==='filing')render();
+        }catch(err){console.error(err);toast('Could not load baselines/amendments');}
+      }
+      async function freezeReviewBaseline(){
+        const note=prompt('Reason for freezing a review baseline (not an actual filing):',
+          'Preserve the current return version before preparing a possible amendment.');
+        if(note===null)return;
+        if(note.trim().length<8)return toast('Enter a reason of at least 8 characters');
+        const r=await fetch('/api/return-snapshots',{method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({version:currentVersion,role:role(),note:note.trim()})});
+        const j=await r.json();if(!r.ok)return toast(j.detail||'Could not freeze baseline');
+        toast('Frozen review baseline #'+j.id+' saved — NOT FILED');await loadSnapshotAmendments();
+      }
+      async function createAmendmentDraft(){
+        const sel=document.getElementById('amend-baseline');
+        const snapshot_id=Number(sel?.value||0),line_key=document.getElementById('amend-line')?.value.trim();
+        const raw=document.getElementById('amend-value')?.value;
+        const reason=document.getElementById('amend-reason')?.value.trim();
+        if(!snapshot_id||!line_key||!raw||!Number.isFinite(Number(raw))||reason.length<8)
+          return toast('Choose baseline, numeric value, line key, and detailed reason');
+        const r=await fetch('/api/amendment-drafts',{method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({snapshot_id,line_key,proposed_value:Number(raw),role:role(),reason})});
+        const j=await r.json();if(!r.ok)return toast(typeof j.detail==='string'?j.detail:'Could not save amendment');
+        toast('Draft amendment #'+j.id+' saved — no return filed');await loadSnapshotAmendments();
+      }
+      function filingSnapshots(){
+        const drafts=amendmentList.filter(a=>snapshotList.some(s=>s.id===a.snapshot_id));
+        return `<div class="panel"><h2>Frozen return baselines & amendment drafts</h2>
+          <p class="small muted">A frozen baseline is a SHA-256-fingerprinted copy of the engine version and current review context; it cannot be edited. It is NOT proof of an e-filed return. Draft amendments document line changes only: no tax recomputation, Form 1040-X generation, or transmission.</p>
+          <button class="btn" onclick="freezeReviewBaseline()">Freeze current review baseline</button>
+          <h3>Saved frozen baselines (${snapshotList.length})</h3>
+          <table><tr><th>ID / version</th><th>Created</th><th>Digest</th><th>Note</th></tr>
+          ${snapshotList.map(s=>`<tr><td>#${s.id} · ${E(s.version)}</td><td>${E(date(s.created_at))}</td><td title="${E(s.sha256)}"><code>${E(s.sha256.slice(0,16))}…</code></td><td>${E(s.note)}</td></tr>`).join('')||'<tr><td colspan="4">No baselines yet</td></tr>'}</table>
+          <h3>Draft an amendment against a frozen baseline</h3>
+          ${snapshotList.length?`<label>Baseline <select id="amend-baseline">${snapshotList.map(s=>`<option value="${s.id}">#${s.id} (${E(s.version)})</option>`).join('')}</select></label>
+          <div class="cols"><label>Exact line key <input id="amend-line" placeholder="SchC.1"></label>
+          <label>Proposed replacement value <input id="amend-value" type="number" step="any" placeholder="151300"></label></div>
+          <label>Evidence and reason <textarea id="amend-reason" placeholder="Cite source document and reason for proposing this amendment."></textarea></label>
+          <button class="btn" onclick="createAmendmentDraft()">Save amendment draft</button>`:
+          '<p>Freeze a review baseline first; the amended draft must link to an immutable baseline.</p>'}
+          <h3>Amendment change history (${drafts.length})</h3>
+          <table><tr><th>Draft / baseline</th><th>Line</th><th>Frozen value</th><th>Proposed value</th><th>Delta</th><th>Status</th></tr>
+          ${drafts.map(a=>`<tr><td>#${a.id} / #${a.snapshot_id}</td><td>${E(a.line_key)}</td><td>${money(a.original_value)}</td><td>${money(a.proposed_value)}</td><td>${money(a.delta)}</td><td>${badge('DRAFT','high')}</td></tr>`).join('')||'<tr><td colspan="6">No amendment drafts</td></tr>'}</table></div>`;
+      }
+
+      function filing(){
+        if(!filingData||filingData.version!==currentVersion)return '<div class="panel">Loading filing lifecycle…</div>';
+        const f=filingData,g=f.readiness;
+        const actions=[['assign_review','Assign a review task'],['request_client_evidence','Request client evidence'],
+          ['review_filing_packet','Check filing packet'],['resolve_rejection','Document rejection handling'],
+          ['review_amendment','Assess amended return'],['review_notice','Review agency notice'],
+          ['rollforward_2026','Record next-year carryforward'],['simulate_filing_ready','Record filing readiness (gated)']];
+        const status=(s)=>badge(s==='accepted'?'ACCEPTED':String(s).toUpperCase(),s==='accepted'?'good':s==='rejected'?'critical':'high');
+        return `<div class="panel"><h2>Filing readiness · ${E(currentVersion)} ${badge(g.ready?'READY TO REVIEW':'BLOCKED',g.ready?'good':'critical')}</h2>
+          <p class="small muted">This page records simulated review steps. It does not transmit e-files, amend tax returns, or contact agencies. Packet history below is scripted evidence—not live filing results.</p>
+          ${g.blockers.length?`<h3>Blocking conditions</h3><ul>${g.blockers.map(x=>`<li>${E(x)}</li>`).join('')}</ul>`:'<p>All configured critical exception, correction and sign-off gates passed.</p>'}
+          <p class="small muted">Role dropdown is a demo persona selector, not verified authentication.</p></div>
+          <div class="panel"><h2>Record a review / filing-workflow action</h2>
+          <div class="cols"><div><label>Action <select id="filing-action">${actions.map(([v,t])=>`<option value="${v}">${E(t)}</option>`).join('')}</select></label></div>
+          <div><label>Reference <input id="filing-ref" value="${E(currentVersion)}" placeholder="e.g., ISS-04, D71, IRS Letter 566"></label></div></div>
+          <p><label>Evidence, assignee, decision or next step <textarea id="filing-note" placeholder="Identify responsible person, source and next action"></textarea></label></p>
+          <button class="btn" onclick="recordFilingAction()">Save workflow record</button></div>
+          ${filingSnapshots()}
+          <div class="panel"><h2>Scripted e-file attempts (case packet)</h2>
+          <table><tr><th>Date</th><th>Jurisdiction</th><th>Result</th><th>Evidence / response</th></tr>
+          ${f.efile.map(x=>`<tr><td>${E(date(x.date))}</td><td>${E(x.jurisdiction)}</td><td>${status(x.status)}</td>
+          <td>${E((x.errors||[]).map(a=>a.code+': '+a.message).join('; ')||x.submission_id||'—')}</td></tr>`).join('')}</table>
+          <p class="small muted">The packet includes a dependent-SSN rejection before subsequent accepted filings. The current workflow does not submit or change those historical records.</p></div>
+          <div class="panel"><h2>Post-filing: notices, amendments & next-year handoff</h2>
+          <h3>Agency notices</h3><table><tr><th>Agency / item</th><th>Summary</th></tr>
+          ${(Array.isArray(f.notices)?f.notices:[]).map(x=>`<tr><td>${E(x.agency||'Agency')} · ${E(x.id||x.type||'Notice')}</td><td>${E(x.summary||x.status||JSON.stringify(x.items_under_examination||''))}</td></tr>`).join('')}
+          </table><h3>Carryovers (engine-supplied; independently verify before transfer)</h3>
+          <pre style="white-space:pre-wrap;overflow-wrap:anywhere;max-height:210px;overflow:auto">${E(JSON.stringify(f.carryovers_out,null,2))}</pre>
+          <h3>Case timeline · filing and post-filing</h3><div class="tablewrap" style="max-height:235px;overflow:auto">
+          ${f.scripted_timeline.map(x=>`<p><b>${E(date(x.date))}</b> · ${E(x.event.replaceAll('_',' '))} <span class="small muted">${E(x.detail)}</span></p>`).join('')}</div></div>
+          <div class="panel"><h2>Recorded workflow history (${f.history.length})</h2>
+          <table><tr><th>Recorded at</th><th>Action</th><th>Reference</th><th>Role / note</th></tr>
+          ${f.history.map(x=>`<tr><td>${E(date(x.created_at))}</td><td>${E(x.action)}</td><td>${E(x.reference_id)}</td><td>${E(x.role)} · ${E(x.note)}</td></tr>`).join('')}</table></div>`;
+      }
+
+
+      let completionData=null, selectedCompletion='intake';
+      async function loadCompleteness(){
+        try {const r=await fetch('/api/completeness?version='+encodeURIComponent(currentVersion));
+          if(!r.ok)throw Error('HTTP '+r.status);
+          completionData=await r.json();if(view==='completeness')render();
+        }catch(e){console.error(e);toast('Could not load completion dashboard');}
+      }
+      function completionChoose(key){selectedCompletion=key;render();}
+      async function completionSave(){
+        const task_key=selectedCompletion;
+        const q=id=>document.getElementById(id)?.value;
+        const payload={version:currentVersion,status:q('comp-status'),assigned_role:q('comp-owner'),
+          due_date:q('comp-due')||null,minutes_spent:Number(q('comp-minutes')),
+          budget_minutes:Number(q('comp-budget')),note:(q('comp-note')||'').trim(),role:role()};
+        if(payload.note.length<8)return toast('Enter an evidence note (8+ characters)');
+        try{const r=await fetch('/api/completeness/'+encodeURIComponent(task_key),{method:'PUT',
+          headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+          const j=await r.json();if(!r.ok)return toast(typeof j.detail==='string'?j.detail:'Could not save task');
+          toast('Completion control saved to SQLite');await loadCompleteness();
+        }catch(e){console.error(e);toast('Could not save completion control');}
+      }
+      function completeness(){
+        if(!completionData||completionData.version!==currentVersion)return `<div class="panel"><h2>Completion dashboard</h2><p>Loading saved checklist...</p><button class="btn secondary" onclick="loadCompleteness()">Reload</button></div>`;
+        const d=completionData,items=d.items,t=items.find(x=>x.key===selectedCompletion)||items[0];
+        const progress=Math.round(100*d.done/d.total);
+        const extra=(d.minutes_spent>d.budget_minutes)?badge('OVER BUDGET','critical'):badge('Within planned budget','good');
+        const incomplete=docs.filter(x=>x.extraction?.status!=='complete');
+        return `<div class="panel"><h2>Completion dashboard · ${E(currentVersion)}</h2>
+          <p class="small muted">Saved assignment, review status, deadlines, and estimated work time. This checklist cannot resolve exceptions, bypass sign-offs, or certify return accuracy. No notifications or identity verification are sent.</p>
+          <div class="stats"><div class="stat"><span>Checklist completed</span><strong>${d.done}/${d.total}</strong><span>${progress}% of review tasks</span></div>
+          <div class="stat"><span>Indexed documents</span><strong>${docs.length}</strong><span>${incomplete.length} not marked complete in extraction metadata</span></div>
+          <div class="stat"><span>Hours logged / budget</span><strong>${(d.minutes_spent/60).toFixed(1)} / ${(d.budget_minutes/60).toFixed(1)}</strong><span>${extra}</span></div>
+          <div class="stat"><span>Still outstanding</span><strong>${d.total-d.done}</strong><span>Task completion does not equal filing readiness</span></div></div></div>
+          <div class="cols" style="grid-template-columns:1.1fr 1fr"><div class="panel"><h2>Review checklist</h2>
+          <table><tr><th>Area / evidence</th><th>Status</th><th>Due</th></tr>
+          ${items.map(x=>`<tr><td><a class="doclink" onclick="completionChoose('${x.key}')"><b>${E(x.title)}</b></a><div class="small muted">${E(x.evidence)} · ${E(x.assigned_role)}</div></td>
+          <td>${badge(x.status,x.status==='done'?'good':x.status==='review'?'high':'')}</td><td>${E(x.due_date||'Not set')}</td></tr>`).join('')}</table>
+          </div><div class="panel"><h2>Edit control · ${E(t.title)}</h2>
+          <p class="small muted">Reference: ${E(t.evidence)}</p>
+          <p><label>Status <select id="comp-status">${['open','in_progress','review','done'].map(s=>`<option value="${s}" ${s===t.status?'selected':''}>${s.replaceAll('_',' ')}</option>`).join('')}</select></label></p>
+          <p><label>Owner <select id="comp-owner">${['preparer','reviewer','partner','client','admin'].map(s=>`<option ${s===t.assigned_role?'selected':''}>${s}</option>`).join('')}</select></label></p>
+          <p><label>Due date <input id="comp-due" type="date" value="${E(t.due_date||'')}"></label></p>
+          <div class="cols"><label>Minutes spent <input id="comp-minutes" type="number" min="0" value="${t.minutes_spent}"></label>
+          <label>Budget minutes <input id="comp-budget" type="number" min="1" value="${t.budget_minutes}"></label></div>
+          <p><label>Evidence and next steps <textarea id="comp-note" placeholder="Evidence reviewed, source document, owner and next action">${E(t.note)}</textarea></label></p>
+          <button class="btn" onclick="completionSave()">Save checklist update</button>
+          <p class="small muted">Completion changes are audited in SQLite. Due dates are displayed only; no automated reminders are sent.</p></div></div>
+          <div class="panel"><h2>Evidence intake quality</h2><p class="small muted">Documents below have extraction status other than complete. A partial extraction is not proof that the entire document is unusable.</p>
+          <div class="tablewrap" style="max-height:260px"><table><tr><th>Document</th><th>Extraction status</th><th>Action</th></tr>
+          ${incomplete.map(x=>`<tr><td>${E(x.id)} · ${E(x.title)}</td><td>${badge(x.extraction?.status||'unknown','high')}</td><td><a class="doclink" onclick="docSelect('${E(x.id)}')">Inspect source</a></td></tr>`).join('')||'<tr><td colspan="3">All documents marked complete in extraction metadata.</td></tr>'}</table></div></div>`;
+      }
+
+      function render() {
+        document.querySelector("#app").innerHTML = {
+          overview: summary,
+          trace,
+          documents,
+          issues,
+          versions,
+          whatif,
+          workflow,
+          audit,
+          checks,
+          corrections,
+          taxworkpapers: taxWorkpapers,
+          filing,
+          completeness,
+        }[view]();
+      }
+      document.querySelector("#role").innerHTML = [
+        "preparer",
+        "reviewer",
+        "partner",
+        "client",
+        "admin",
+      ]
+        .map((x) => `<option>${x}</option>`)
+        .join("");
+      document.querySelector("#role").onchange = () => {
+        log("Switched role", role());
+        render();
+      };
+      document.querySelector("#export").onclick = () => {
+        let a = document.createElement("a");
+        a.href = URL.createObjectURL(
+          new Blob(
+            [
+              JSON.stringify(
+                {
+                  exportedAt: new Date().toISOString(),
+                  case: P.packet,
+                  review: state,
+                },
+                null,
+                2,
+              ),
+            ],
+            { type: "application/json" },
+          ),
+        );
+        a.download = "miraflores_review_export.json";
+        a.click();
+        URL.revokeObjectURL(a.href);
+        log("Exported review record", "file");
+      };
+      
+async function loadSavedVerifications() {
+  try {
+    const response = await fetch("/api/review-decisions");
+
+    if (!response.ok) {
+      throw new Error(`Unable to load decisions: ${response.status}`);
+    }
+
+    const decisions = await response.json();
+    const loaded = new Set();
+
+    // The API returns newest decisions first.
+    // Keep the latest decision for each return line.
+    for (const decision of decisions) {
+      if (decision.decision_type !== "independent_verification") {
+        continue;
+      }
+
+      const key = decision.reference_id;
+
+      if (loaded.has(key)) continue;
+      loaded.add(key);
+
+      if (decision.status === "verified") {
+        state.verified[key] = {
+          note: decision.note,
+          by: decision.role,
+          at: decision.created_at,
+          version: currentVersion,
+          database_id: decision.id
+        };
+      } else {
+        delete state.verified[key];
+      }
+    }
+
+    render();
+    console.log("Verifications loaded from SQLite:", loaded.size);
+  } catch (error) {
+    console.error("Unable to load saved verifications:", error);
+  }
+}
+
+async function loadSavedExceptions() {
+  try {
+    const response = await fetch("/api/exceptions");
+
+    if (!response.ok) {
+      throw new Error(`Unable to load exceptions: ${response.status}`);
+    }
+
+    const exceptions = await response.json();
+
+    for (const item of exceptions) {
+      state.issues[item.exception_id] = {
+        status: item.status,
+        note: item.note || "",
+        owner: item.assigned_role,
+        by: "Saved review",
+        at: new Date().toISOString()
+      };
+    }
+
+    render();
+
+    console.log("Exceptions loaded from SQLite:", exceptions.length);
+  } catch (error) {
+    console.error("Unable to load saved exceptions:", error);
+  }
+}
+
+async function loadSavedSignoffs() {
+  try {
+    const response = await fetch("/api/signoffs");
+
+    if (!response.ok) {
+      throw new Error(`Unable to load sign-offs: ${response.status}`);
+    }
+
+    const signoffs = await response.json();
+
+    // Remove stale browser-only approvals.
+    state.signoffs = {};
+
+    for (const item of signoffs) {
+      if (item.return_version !== currentVersion) continue;
+
+      state.signoffs[item.role] = {
+        at: item.signed_at,
+        version: item.return_version,
+        database_id: item.id
+      };
+    }
+
+    render();
+
+    console.log("Sign-offs loaded from SQLite:", signoffs.length);
+  } catch (error) {
+    console.error("Unable to load saved sign-offs:", error);
+  }
+}
+
+
+
+      go("overview");
+      loadSavedVerifications();
+      loadSavedExceptions();
+      loadBulkBatches();
+      loadAuditEvents();
+      loadSavedSignoffs();
+      loadReconciliations();
+    </script>
+
+    <script>
+      async function testBackendConnection() {
+        try {
+          const response = await fetch("/api/summary");
+
+          if (!response.ok) {
+            throw new Error(`API returned ${response.status}`);
+          }
+
+          const data = await response.json();
+          console.log("Miraflores backend connected:", data);
+        } catch (error) {
+          console.error("Backend connection failed:", error);
+        }
+      }
+
+      async function testDocumentAPI() {
+        try {
+          const response = await fetch("/api/documents/D08");
+
+          if (!response.ok) {
+            throw new Error(`Document API returned ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          console.log("Document loaded from backend:", {
+            id: data.document.id,
+            title: data.document.title,
+            extractedValues: data.extracted_values.length,
+          });
+        } catch (error) {
+          console.error("Document API failed:", error);
+        }
+      }
+
+      testDocumentAPI();
+
+      testBackendConnection();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ISS-01",
+    "severity": "critical",
+    "title": "Corrected brokerage document omits final page",
+    "doc": "D31",
+    "explanation": "Corrected Meridian 1099-B p.32 lists M18 proceeds $250, basis $310; extraction status partial and page 32 unread. Reconcile summary to lot detail and Form 8949."
+  },
+  {
+    "id": "ISS-02",
+    "severity": "high",
+    "title": "Mileage log includes duplicate scan",
+    "doc": "D23",
+    "explanation": "May\u2013Aug mileage sheet appears twice, on pages 2 and 3. Confirm that 3,700 miles are counted once."
+  },
+  {
+    "id": "ISS-03",
+    "severity": "high",
+    "title": "Potential duplicate W-2",
+    "doc": "D10",
+    "explanation": "Halvorsen W-2 photo duplicates original D09. Confirm one W-2 counted, not two."
+  },
+  {
+    "id": "ISS-04",
+    "severity": "critical",
+    "title": "Dependent SSN inconsistency",
+    "doc": "D71",
+    "explanation": "Organizer identifies Theo as ending 3309; Social Security card and 2024 return show ending 3390. Resolve prior to e-file."
+  },
+  {
+    "id": "ISS-05",
+    "severity": "high",
+    "title": "Corrected brokerage supersedes prior issue",
+    "doc": "D30",
+    "explanation": "D31 is marked corrected. Confirm all changed wash-sale and basis values replace D30 throughout the return."
+  },
+  {
+    "id": "ISS-06",
+    "severity": "high",
+    "title": "1099-K overlaps 1099-NEC and receipts",
+    "doc": "D21",
+    "explanation": "The $12,400 Paywell amount is included in Atlas $41,200 business receipts; avoid double counting."
+  },
+  {
+    "id": "ISS-07",
+    "severity": "high",
+    "title": "Foreign account review",
+    "doc": "D36",
+    "explanation": "Swedish account interest and high balance require foreign reporting and exchange-rate verification; FBAR may be outside engagement scope."
+  },
+  {
+    "id": "ISS-08",
+    "severity": "high",
+    "title": "Late partnership K-1 and basis",
+    "doc": "D37",
+    "explanation": "Ridgeline K-1 arrived June 22, after earlier computations. Review v3 incorporation, state allocation, and passive loss treatment."
+  },
+  {
+    "id": "ISS-09",
+    "severity": "medium",
+    "title": "Ambiguous charitable receipt",
+    "doc": "D64",
+    "explanation": "Handwritten charitable receipt first digit may be 1 or 7; verify donation amount with client."
+  },
+  {
+    "id": "ISS-10",
+    "severity": "medium",
+    "title": "Client-book expense classification",
+    "doc": "D15",
+    "explanation": "Software detail includes Spotify Family; verify personal versus business expenses and reconcile total to books."
+  },
+  {
+    "id": "ISS-11",
+    "severity": "high",
+    "title": "Rental replacement capital vs repair",
+    "doc": "D47",
+    "explanation": "An $11,000 heat pump replaces existing HVAC; review capitalization, depreciation and rental deduction handling."
+  },
+  {
+    "id": "ISS-12",
+    "severity": "high",
+    "title": "Client payment tax-year mismatch",
+    "doc": "D68",
+    "explanation": "California payment dated Sep 15 2025 shows tax year 2024 among 2025 estimates; check FTB account allocation."
+  }
+]
